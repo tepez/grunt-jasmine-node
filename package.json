@@ -28,7 +28,7 @@
   },
   "scripts": {},
   "dependencies": {
-    "jasmine-node": "2.0.0-beta4"
+    "jasmine-node": "tepez/jasmine-node#Jasmine2.0"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
