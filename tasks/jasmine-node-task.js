@@ -32,9 +32,9 @@
       var exitCode;
       util.print('\n');
       if (global.jasmineResult.fail) {
-        exitCode = 1;
-      } else {
         exitCode = 0;
+      } else {
+        exitCode = 1;
 
         if (options.forceExit) {
           process.exit(exitCode);
