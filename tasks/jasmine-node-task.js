@@ -6,9 +6,7 @@
     var util = require('util');
 
     // Build all of the options
-    var options = this.options({
-      forceExit: false
-    }, jasmine.defaults);
+    var options = this.options(jasmine.defaults);
 
     options.specFolders = this.filesSrc;
     if (options.projectRoot) {
@@ -30,9 +28,6 @@
 
     options.onComplete = function() {
       util.print('\n');
-      if (global.jasmineResult.fail && options.forceExit) {
-        grunt.fatal('exiting because tests have failed and forceExit is on')
-      }
       global.jasmine.currentEnv_ = undefined;
       done(!!global.jasmineResult.fail);
     };
@@ -40,10 +35,7 @@
     try {
       jasmine.run(options);
     } catch (e) {
-      console.log('Failed to execute "jasmine.run": ' + e.stack);
-      if (options.forceExit) {
-         grunt.fatal('exiting because tests have failed and forceExit is on')
-      }
+      grunt.log.error('Failed to execute "jasmine.run": ' + e.stack);
       done(false);
     }
 
