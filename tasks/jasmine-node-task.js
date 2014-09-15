@@ -6,7 +6,7 @@
     var util = require('util');
 
     // Build all of the options
-    var options = this.options(jasmine.defaults);
+    var options = this.options({dontCaptureExit: true}, jasmine.defaults);
 
     options.specFolders = this.filesSrc;
     if (options.projectRoot) {
