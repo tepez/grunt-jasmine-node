@@ -29,26 +29,24 @@
     options.watchFolders = options.watchFolders || [];
 
     options.onComplete = function() {
-      var exitCode;
       util.print('\n');
-      if (global.jasmineResult.fail) {
-        exitCode = 0;
-      } else {
-        exitCode = 1;
-
-        if (options.forceExit) {
-          process.exit(exitCode);
-        }
+      if (global.jasmineResult.fail && options.forceExit) {
+        grunt.fatal('exiting because tests have failed and forceExit is on')
       }
       global.jasmine.currentEnv_ = undefined;
-      done(exitCode === 0);
+      done(!!global.jasmineResult.fail);
     };
 
     try {
       jasmine.run(options);
     } catch (e) {
       console.log('Failed to execute "jasmine.run": ' + e.stack);
+      if (options.forceExit) {
+         grunt.fatal('exiting because tests have failed and forceExit is on')
+      }
+      done(false);
     }
 
   });
 };
+~
