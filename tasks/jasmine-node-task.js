@@ -29,7 +29,7 @@
     options.onComplete = function() {
       util.print('\n');
       global.jasmine.currentEnv_ = undefined;
-      done(!!global.jasmineResult.fail);
+      done(!global.jasmineResult.fail);
     };
 
     try {
